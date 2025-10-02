@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(to bottom right, #ffe6f0, #ffccff);
+        font-family: "Comic Sans MS", "Poppins", cursive;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .okok {
+        font-family: 'Pacifico', cursive;
+        text-align: center;
+        color: pink;
+        font-size: 60px;
+    }
+
+    .nono{
+        font-family: 'Dancing Script', cursive;
+        text-align: center;
+        color: #99004d;
+        font-size: 30px;
+    }
+
+    .okok p, .nono p {
+        text-shadow: 0 0 10px #ffd6eb;
+    }
+
+    .love-letter {
+        background: rgba(255, 255, 255, 0.8);
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 182, 193, 0.5);
+        color: #99004d;
+        font-family: 'Dancing Script', cursive;
+        font-size: 24px;
+        line-height: 1.8;
+        text-align: center;
+        position: relative;
+        animation: fadeIn 3s ease-in-out;
+    }
+
+    .love-letter p {
+        text-shadow: 0 0 10px #ffd6eb;
+    }
+
+    /* Proposal Section */
+    .proposal {
+        background: rgba(255, 255, 255, 0.85);
+        max-width: 700px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
+        font-family: 'Dancing Script', cursive;
+        font-size: 24px;
+        text-align: center;
+        color: #99004d;
+    }
+
+    .hearts-container {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .heart-btn {
+        font-size: 24px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        background: linear-gradient(45deg, #ff66b2, #ff99cc);
+        color: white;
+        box-shadow: 0 5px 15px rgba(255, 102, 178, 0.5);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .heart-btn:hover {
+        transform: scale(1.2) rotate(-5deg);
+        box-shadow: 0 8px 20px rgba(255, 102, 178, 0.7);
+    }
+
+    .heart-btn:active {
+        transform: scale(1.1) rotate(0deg);
+    }
+
+    #romanticImgContainer img {
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(255,102,178,0.7);
+        max-width: 400px;
+        opacity: 0;
+        transition: opacity 2s;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(-100vh); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<!-- Hidden Background Music -->
+<audio autoplay loop muted style="display:none;" id="loveSong">
+  <source src="love.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Header -->
+<div class="okok">
+    <p>Good morning my sweet princess</p>
+</div>
+
+<hr style="border: none; border-top: 2px dashed pink; width: 50%; margin: 30px auto;">
+
+<div class="nono">
+    <p>Happy Girlfriend's Day my sweetheart</p>
+</div>
+
+<!-- Love Letter -->
+<div class="love-letter">
+  <p>
+    My sweet cutie pie, you are the beacon of my life, my whole life revolves around you.
+    If I get born again a thousand times or even millions, I would still prefer to be by your side
+    in every life, every universe. I wouldn’t even leave you in the multiverse — that’s how much I love you. ❤️
+  </p>
+  <p>
+    You are my greatest pride, my sweetheart, my everything. With you, the only regret
+    is not having met you sooner or talked to you during 7th class.
+  </p>
+  <p>
+    I really want to spend the rest of my life with you and cherish you as my love.
+    These three years have been the greatest moments of my life and you never cease to amaze me.
+  </p>
+  <p>
+    I’m glad I met you in this life. By signing the multiverse contract, you’re stuck with me now. 😉
+    No matter how many days or how many years, I will always love you.
+  </p>
+  <p>
+    Navika, happy Girlfriend’s Day my love. 💖
+  </p>
+  <p style="font-family:'Pacifico',cursive;font-size:28px;color:#ff66b2;">Forever yours, 💌 [Swarnim Singh]</p>
+</div>
+
+<!-- Proposal Section -->
+<div class="proposal">
+    <p>Navika, I have a special gift for you, and I hope you’ll accept it with all your heart. 💖</p>
+    <p>Will you accept my gift?</p>
+    <div class="hearts-container">
+        <button class="heart-btn" id="yesBtn">💖 Yes</button>
+        <button class="heart-btn" id="noBtn">💔 No</button>
+    </div>
+</div>
+
+<!-- Romantic Gift Image -->
+<div id="romanticImgContainer" style="text-align:center; margin-top:20px; position:relative; display:none;">
+    <img id="romanticImg" src="romantic.png" alt="Romantic Gift">
+</div>
+
+<script>
+const hearts = ["💖","💘","💕","💓","💞"];
+
+// Floating hearts in background
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+  heart.style.position = "fixed";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.top = "100vh";
+  heart.style.fontSize = "24px";
+  heart.style.animation = "float 5s linear";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}, 700);
+
+// Unmute music on click anywhere
+document.body.addEventListener("click", function() {
+    const audio = document.getElementById("loveSong");
+    audio.muted = false;
+    audio.play();
+});
+
+// Proposal Buttons
+document.getElementById("yesBtn").addEventListener("click", function() {
+    alert("Yay! You made me the happiest person alive! 💖");
+
+    const imgContainer = document.getElementById("romanticImgContainer");
+    const img = document.getElementById("romanticImg");
+    imgContainer.style.display = "block";
+    setTimeout(() => img.style.opacity = 1, 100);
+
+    // Hearts around image
+    const interval = setInterval(() => {
+        const heart = document.createElement("div");
+        heart.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+        heart.style.position = "absolute";
+        heart.style.left = Math.random() * (img.offsetWidth - 20) + "px";
+        heart.style.top = Math.random() * (img.offsetHeight - 20) + "px";
+        heart.style.fontSize = Math.random() * 24 + 16 + "px";
+        heart.style.opacity = 0.8;
+        heart.style.transition = "all 3s linear";
+        imgContainer.appendChild(heart);
+        setTimeout(() => {
+            heart.style.top = parseInt(heart.style.top) - 100 + "px";
+            heart.style.opacity = 0;
+        }, 50);
+        setTimeout(() => heart.remove(), 3000);
+    }, 300);
+    setTimeout(() => clearInterval(interval), 10000);
+});
+
+document.getElementById("noBtn").addEventListener("click", function() {
+    alert("Jhutii! 😄 You can't say no to my love!");
+});
+</script>
+
+</body>
+</html>
